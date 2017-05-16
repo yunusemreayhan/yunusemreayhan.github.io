@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+
+  <title>Concurrency in Android</title>
+  <meta name="description" content="In some cases, for some reason developer may need to do something in background(like server operations). In those cases doing the stuff in the main ui thread...">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://yunusemreayhan.github.io/android/2015/04/09/Android-Concurrency.html">
+  <link rel="alternate" type="application/atom+xml" title="YUNUS EMRE AYHAN" href="http://yunusemreayhan.github.io/feed.xml" />
+  <script src="/scripts/jquery-1.11.2.min.js"></script>
+  <script src="/scripts/pithy.js"></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-99239384-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</head>
+
+
+  <body>
+    <header class="header">
+	<div class="header-container">
+		<div class="nav">
+			
+				<li>
+					<a href="/index.html">home</a>
+				</li>			
+			
+			
+				<li>
+					<a href="/archive.html">archive</a>
+				</li>			
+			
+			
+				<li>
+					<a href="/category.html">category</a>
+				</li>			
+			
+			
+				<li>
+					<a href="/about.html">about</a>
+				</li>			
+			
+		</div>
+		<div class="description"> Info is volatile, Blogs are permanent! </div>		
+		<ul class="social-links">
+			<li>
+				<a href="https://github.com/yunusemreayhan" title="Github">
+					<img width="19px" height="19px" src="/images/github.png"/>
+				</a>
+			</li>
+			<li>
+				<a href="/feed.xml" title="RSS">
+					<img width="19px" height="19px" src="/images/rss.png"/>
+				</a>
+			</li>
+			<li>
+				<a href="https://twitter.com/geninus" title="Twitter">
+					<img width="19px" height="19px" src="/images/twitter.png"/>
+				</a>
+			</li>
+		</ul>		
+	</div>
+</header>
+
+    <br>
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+  <br>
+  <header class="post-header">
+    <h1 class="post-title">Concurrency in Android</h1>
+    <p class="post-meta">Apr 9, 2015 • Yunus Emre AYHAN</p>
+  </header>
+
+  <article class="post-content">
+    <p>In some cases, for some reason developer may need to do something in background(like server operations). In those cases doing the stuff in the main ui thread will consume time and make the application seem bulky. To figure out those tasks android offer simple solutions like async and handler. Both async and handler uses threads to handle their job in the background. But they provide solution on simple tasks, to the basic thread problems, like :</p>
+
+<ul>
+  <li>Synchronization with the main thread if you post back results to the user interface</li>
+  <li>No default for canceling the thread</li>
+  <li>No default thread pooling</li>
+  <li>No default for handling configuration changes in Android</li>
+</ul>
+
+<hr />
+
+<h3 id="using-threads">Using Threads</h3>
+
+<h3 id="using-handler-class">Using Handler Class</h3>
+
+<h3 id="using-async-class">Using Async Class</h3>
+
+<p>AsyncTask enables proper and easy use of the UI thread. This class allows to perform background operations and publish results on the UI thread without having to manipulate threads and/or handlers.</p>
+
+<p>Async class, gets three types in construction. It is like Async&lt;params, update, result&gt;. There are three important functions also may be overriden in this class using those three types : doInBackground, onPostExecute, onProgressUpdate. To pass progress value to the onProgressUpdate we need the use publishProgress function. The possible reason to use onPostExecute and onProgressUpdate is we may need to update some ui element which run on generic ui thread. Which we can not manipulate at doInBackground task. Because a ui element can only be manipulated from same thread it runs on.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">new</span> <span class="n">AsyncTask</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">,</span> <span class="n">Void</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="n">String</span> <span class="nf">doInBackground</span><span class="o">(</span><span class="n">Void</span><span class="o">...</span> <span class="n">voids</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">someServerStuff</span><span class="o">(</span><span class="s">"username"</span><span class="o">,</span> <span class="s">"password"</span><span class="o">,</span>
+        	<span class="s">"ipaddr"</span><span class="o">,</span> <span class="n">portno</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">ret</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onPostExecute</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onPostExecute</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+        <span class="n">TextView</span> <span class="n">tv2</span> <span class="o">=</span> <span class="o">(</span><span class="n">TextView</span><span class="o">)</span>
+        	<span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">sample_text</span><span class="o">);</span>
+        <span class="n">tv2</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+	<span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onProgressUpdate</span><span class="o">(</span><span class="n">Void</span><span class="o">...</span> <span class="n">values</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onProgressUpdate</span><span class="o">(</span><span class="n">values</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}.</span><span class="na">execute</span><span class="o">();</span>
+</code></pre>
+</div>
+
+  </article>
+   • <a href="https://yunus_emre_ayhan.github.io/android/2015/04/09/Android-Concurrency.html#disqus_thread">0 Comments</a>
+
+
+<div id="disqus_thread"></div>
+<script>
+var disqus_config = function () {
+this.page.url = "http://yunusemreayhan.github.io/android/2015/04/09/Android-Concurrency.html"; // <--- use canonical URL
+this.page.identifier = "/android/2015/04/09/Android-Concurrency";
+};
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//yunus_emre_ayhan.disqus.com/embed.js'; // <--- use Disqus shortname
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+      </div>
+    </div>
+
+    <footer class="footer">
+  <div id="gotop">^</div>
+  <br>
+	@2015 Pithy Theme by Pawpaw.
+</footer>
+
+    <script id="dsq-count-scr" src="//yunus_emre_ayhan.disqus.com/count.js" async></script>
+  </body>
+
+</html>
