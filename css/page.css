@@ -1,3 +1,7 @@
+.myTableJob, .myTableJob .th, .myTableJob .td, .myTableJobTh , .myTableJobTr {
+	border: 0px;
+}
+
 .year {
 	color:rgb(0,180,0);
 	margin-left:35px;
