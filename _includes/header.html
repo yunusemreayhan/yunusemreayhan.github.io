@@ -34,15 +34,15 @@
 					<a href="/category.html">category</a>
 				</li>
 			{% endif %}
-			{% if page.path == "about.html" %}
+			{% if page.path == "/en/about.html" || if page.path == "/tr/about.html"%}
 			<span class="title">
 				<li>
-					<a href="/about.html">about</a>
+					<a href="/en/about.html">about</a>
 				</li>
 			</span>
 			{% else %}
 				<li>
-					<a href="/about.html">about</a>
+					<a href="/en/about.html">about</a>
 				</li>
 			{% endif %}
 		</div>
