@@ -83,7 +83,20 @@ li {
     color: #EEE;
 }
 
+.other-links{
+	display: inline-flex;
+}
+
+.lang-sel-links{
+	width: 70px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	font-size: 17px;
+	color : #959BA6;
+}
+
 .social-links {
+	width: 290px;
     padding-top: 10px;
 	margin-left: 0px;
 }
@@ -132,7 +145,7 @@ li {
 }
 
 .post-list li a {
-	color: #000;	
+	color: #000;
 }
 
 #line {
@@ -167,7 +180,7 @@ li {
  */
  .category-box {
 	font-weight:bold;
-	font-size: 16px; 	
+	font-size: 16px;
  }
 
 
@@ -175,7 +188,7 @@ li {
  * About
  */
 .about {
-	color: #666;	
+	color: #666;
 }
 
 /**
@@ -190,8 +203,8 @@ li {
 #gotop {
     position: fixed;
     right: 20px;
-    bottom: 20px;    
-    padding: 10px 15px;    
+    bottom: 20px;
+    padding: 10px 15px;
     font-size: 20px;
     background: #515865;
     color: white;

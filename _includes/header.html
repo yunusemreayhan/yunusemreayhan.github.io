@@ -47,27 +47,43 @@
 			{% endif %}
 		</div>
 		<div class="description"> {{ site.motto }} </div>
-		<ul class="social-links">
-			<li>
-				<a href="https://github.com/{{ site.github_username }}" title="Github">
-					<img width="19px" height="19px" src="/images/github.png"/>
-				</a>
-			</li>
-			<li>
-				<a href="mailto:{{ site.email }}" title="Mail">
-					<img width="19px" height="19px" src="/images/mail.png"/>
-				</a>
-			</li>
-			<li>
-				<a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" title="LinkedIn">
-					<img width="19px" height="19px" src="/images/linkedin.png"/>
-				</a>
-			</li>
-			<li>
-				<a href="/feed.xml" title="RSS">
-					<img width="19px" height="19px" src="/images/rss.png"/>
-				</a>
-			</li>
-		</ul>
+		<div class="other-links">
+			<ul class="social-links">
+				<li>
+					<a href="https://github.com/{{ site.github_username }}" title="Github">
+						<img width="19px" height="19px" src="/images/github.png"/>
+					</a>
+				</li>
+				<li>
+					<a href="mailto:{{ site.email }}" title="Mail">
+						<img width="19px" height="19px" src="/images/mail.png"/>
+					</a>
+				</li>
+				<li>
+					<a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" title="LinkedIn">
+						<img width="19px" height="19px" src="/images/linkedin.png"/>
+					</a>
+				</li>
+				<li>
+					<a href="/feed.xml" title="RSS">
+						<img width="19px" height="19px" src="/images/rss.png"/>
+					</a>
+				</li>
+			</ul>
+			<div class="lang-sel-links">
+				<ul class="social-links">
+					<li>
+						<a href="/en/about.html" title="turkce">
+							en
+						</a>
+					</li>
+					<li>
+						<a href="/tr/about.html" title="english">
+							tr
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 </header>
