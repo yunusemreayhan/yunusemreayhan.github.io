@@ -4,7 +4,7 @@ title: Hakkımda
 permalink: /tr/about.html
 ---
 
-Merhabalar, ben Yunus Emre AYHAN. Elektronik ve Haberleşme mühendisiyim. Bu da benim kişisel websitem bir de ufaktan not defterim. Elimden geldiğı kadar burada not öğrendiğim yeni şeyleri paylaşmak niyetindeyim. Paylaşımlar ingilizce ve türkçe karışık olucak muhtemelen. Umarım faydalı olur.
+Merhabalar, ben Yunus Emre AYHAN. Elektronik ve Haberleşme mühendisiyim. Bu da benim kişisel websitem bir de ufaktan not defterim. Vakit buldukça burada öğrendiğim yeni şeyleri paylaşmak niyetindeyim. Paylaşımlar ingilizce ve türkçe karışık olucak muhtemelen. Umarım faydalı olur.
 
 ## Eğitim
 * (Yüksek Lisans) YTÜ Haberleşme Anabilim Dalı (Tez Aşamasında)(2013 - ...)
