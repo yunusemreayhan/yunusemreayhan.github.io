@@ -14,7 +14,7 @@ Bu yazımda türkçe karakterlerden dolayı yaşadığım bir sıkıntıyla ilgi
 Linux kullanıcısı olarak genelde bütün programlar, diğer karakterlerin kullanımını göz önünde bulundurmayabiliyor. Elimde mesela bir ebup arşivi vardı, sıkıştırma programından kaynaklı olduğunu zannediyorum, dosya isimlerin deki esrarengiz karakterlerden muzdaripdim('ƒ', '±', '√', '∂', 'ß', '≈', 'ü',
 'º', 'ñ', '∞', 'á', 'û', 'ö', 'ú', 'ª', '¢').  Bu karakterlerden dolayı, dosyalarım evdeki home serverda bulunduğu için, dosyalara erişim de sağlayamıyordum. Çare python deyip ufak bir script yazdım. Şuan ki haliyle script bu tuhaf karakterleri ingilizce karşılıklarına çeviriyor. Yazmışken türkçe karakterleri ingilizce karakterlere çeviren fonksiyonuda ekledim. Neyse uzatmayayım script biraz karışık gibi ama fonksiyonlardan ne yaptığı zannediyorum anlaşılır. Düzenlenip kullanılabilir. Çalıştırmak için isim değişikliği yapmasını istediğimiz klasörü girdi olarak veriyoruz :
 
-> python myscript.py <dir_to_convert>
+> python myscript.py "dir_to_convert"
 
 ### KOD :
 
