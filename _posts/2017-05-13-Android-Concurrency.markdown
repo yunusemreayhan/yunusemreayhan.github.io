@@ -18,8 +18,42 @@ In some cases, for some reason developer may need to do something in background(
 
 ### Using Threads
 
+Threads are the basic way of multithreading in java. Even if it is not syntax efficient they may used in android also. It is not efficient because it is a kind of reinventing the wheel on some certain stereotype tasks. Basic syntax is like this.
+```java
+Thread a = new Thread(new Runnable() {
+    @Override
+    public void run() {
+
+    }
+});
+```
+or like this:
+```java
+Thread a = new Thread(){
+            @Override
+            public void run() {
+                super.run();
+            }
+        };
+```
+To pass parameter to thread you can customize new Runnable:
+
+```java
+public class mCustomRunnable extends Runnable{
+    public mCustomRunnable(int some_parameter){
+
+    }
+
+    @Override
+    public void run() {
+
+    }
+}
+```
+
 ### Using Handler Class
 
+A Handler object registers itself with the thread in which it is created. It provides a channel to send data to this thread. For example, if you create a new Handler instance in the onCreate() method of your activity, it can be used to post data to the main thread. The data which can be posted via the Handler class can be an instance of the Message or the Runnable class. A Handler is particularly useful when you want to share data between threads.
 
 ### Using Async Class
 
