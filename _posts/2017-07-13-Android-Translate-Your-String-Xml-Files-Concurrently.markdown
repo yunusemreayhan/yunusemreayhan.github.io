@@ -10,7 +10,6 @@ comments: true
 Hello community,
 
 This is a simple translation code writen in python. This simple sweet tool can tranlate your applications with google tranlate abilities within minutes. Check it out. By the way, in order to use it you will need to install google api stuff, here is the [link](https://developers.google.com/api-client-library/)
-> python myscript.py "dir_to_convert"
 
 ### KOD :
 
@@ -67,7 +66,6 @@ def worker():
 
 def run_quickstart():
     import threading
-    from xml.etree.ElementTree import Element, SubElement, Comment, tostring
     threads = []
     for i in range(threadcount):
         t = threading.Thread(target=worker)
